@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
     Created on : 17/12/2023, 11:29:37 p. m.
-    Author     : juanc
+    Author     : JavierLuis
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -19,35 +19,24 @@
         <div class="container mt-5">
             <div class="row">
                 <div class="col-sm">                
-                    <form>
-                        <!--Mensaje y imput para agregar el texto -->
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Escribe tu nombre</label>
-                            <input type="text" class="form-control" name="nombreDelHumano" placeholder="Nombre">
-                            <small id="emailHelp" class="form-text text-muted">Primera en mayúscula.</small>
-                        </div>
-                        <!--Mensaje y imput para agregar el texto -->
-                        <div class="form-group">
-                            <label>Escribe tu edad</label>
-                            <input type="text" class="form-control" name="edadDelHumano" placeholder="Nombre">
-                            <small id="emailHelp" class="form-text text-muted">Solo el número.</small>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Enviar</button>
-                    </form>
-                </div>
-            </div>
-            <!--aqui va el mensaje que ha sido agregado en el imput -->
-            <div class="row">
-                <div class="col-sm">
-                    <div class="alert alert-primary" role="alert">
-                        <!-- codigo java -->
-                        <%
-                            String nombre = request.getParameter("nombreDelHumano");
-                            String edad = request.getParameter("edadDelHumano");
-                            String saludarHumano = "Hola " + nombre + " a tus " + edad + " años ya estas viejo";
-                            out.print(saludarHumano);
-                        %>
-                    </div>
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Dirección</th>
+                                <th scope="col">Teléfono</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                            </tr>                            
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
