@@ -4,7 +4,10 @@
     Author     : JavierLuis
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*"%>
+<%@ page import="com.mysql.cj.jdbc.Driver" %>
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,10 +19,20 @@
         <title>Lista de empleados</title>
     </head>
     <body>
-        <%
-            Connection
-            
-        %>
+        <%        
+            // Datos de conexion a la bd
+            String driver = "com.mysql.cj.jdbc.Driver";
+            String username = "root";
+            String password = "123456";
+            String port = "3306";
+            String hostname = "localhost";
+            String database = "pruebahlf";
+            String url = "jdbc:mysql://" + hostname + ":" + port + "/" + database + "?autoReconnect=true&useSSL=false";
+            // conexion a Mysql
+            Connection conn;
+            Statement statement;
+            ResultSet rs;
+            %>
         <div class="container mt-5">
             <div class="row">
                 <div class="col-sm">                
@@ -33,12 +46,30 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>                            
+                        <% 
+                            try {
+                                Class.forName(driver);
+                                // credenciales para ingresar a la base de datos
+                                conn = DriverManager.getConnection(url, username, password);
+                                statement = conn.createStatement();
+                                // mostrar datos empleado
+                                rs = statement.executeQuery("SELECT * FROM empleados");
+                                // realizamos do-while para imprimir por pantalla los datos guardados en la bd
+                                // rs.next() genera que automaticamente pase a la siguiente casilla para acceder a los datos
+                                while (rs.next()){
+                                %> 
+                                    <tr>
+                                        <th scope="row"><%= rs.getString(1) %></th>
+                                        <td><%= rs.getString(2) %></td>
+                                        <td><%= rs.getString(3) %></td>
+                                        <td><%= rs.getString(4) %></td>
+                                    </tr>        
+                                    <%
+                                }
+                            } catch (SQLException e) {
+                                out.print("Error mysql " + e); // Manejo de errores
+                            }
+                        %>                                                    
                         </tbody>
                     </table>
                 </div>
