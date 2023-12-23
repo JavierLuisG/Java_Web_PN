@@ -13,9 +13,13 @@
               rel="stylesheet" 
               integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
               crossorigin="anonymous">
-        <title>Saludo!!!</title>
+        <title>Lista de empleados</title>
     </head>
     <body>
+        <%
+            Connection
+            
+        %>
         <div class="container mt-5">
             <div class="row">
                 <div class="col-sm">                
