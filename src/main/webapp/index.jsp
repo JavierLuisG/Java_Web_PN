@@ -16,6 +16,13 @@
               rel="stylesheet" 
               integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
               crossorigin="anonymous">
+        <!-- codigo bootstrap font awesome donde se pueden encontrar gran cantidad de ICONOS -->
+        <!--link rel="stylesheet" 
+              href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css" 
+              integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" 
+              crossorigin="anonymous"-->
+        <!-- instalacion de bootstrap icons-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
         <title>Lista de empleados</title>
     </head>
     <body>
@@ -32,44 +39,58 @@
             Connection conn;
             Statement statement;
             ResultSet rs;
-            %>
+        %>
         <div class="container mt-5">
             <div class="row">
                 <div class="col-sm">                
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>
+                                <!-- colspan: va a absorver 4 columnas -->
+                                <th scope="col" colspan="4">Empleados</th>
+                                <th scope="col">
+                                    <!--i class="fa fa-fighter-jet" aria-hidden="true"></i-->
+                                    <i class="bi bi-person-plus-fill"></i>
+                                </th>
+                            </tr>
+                            <tr>
                                 <th scope="col">Id</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Dirección</th>
                                 <th scope="col">Teléfono</th>
+                                <!-- acciones (editar y borrar) -->
+                                <th scope="col">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                        <% 
-                            try {
-                                Class.forName(driver);
-                                // credenciales para ingresar a la base de datos
-                                conn = DriverManager.getConnection(url, username, password);
-                                statement = conn.createStatement();
-                                // mostrar datos empleado
-                                rs = statement.executeQuery("SELECT * FROM empleados");
-                                // realizamos do-while para imprimir por pantalla los datos guardados en la bd
-                                // rs.next() genera que automaticamente pase a la siguiente casilla para acceder a los datos
-                                while (rs.next()){
-                                %> 
-                                    <tr>
-                                        <th scope="row"><%= rs.getString(1) %></th>
-                                        <td><%= rs.getString(2) %></td>
-                                        <td><%= rs.getString(3) %></td>
-                                        <td><%= rs.getString(4) %></td>
-                                    </tr>        
-                                    <%
-                                }
-                            } catch (SQLException e) {
-                                out.print("Error mysql " + e); // Manejo de errores
-                            }
-                        %>                                                    
+                            <% 
+                                try {
+                                    Class.forName(driver);
+                                    // credenciales para ingresar a la base de datos
+                                    conn = DriverManager.getConnection(url, username, password);
+                                    statement = conn.createStatement();
+                                    // mostrar datos empleado
+                                    rs = statement.executeQuery("SELECT * FROM empleados");
+                                    // realizamos while para imprimir por pantalla los datos guardados en la bd
+                                    // rs.next() genera que automaticamente pase a la siguiente casilla para acceder a los datos
+                                    while (rs.next()){
+                            %> 
+                            <tr>
+                                <th scope="row"><%= rs.getString(1) %></th>
+                                <td><%= rs.getString(2) %></td>
+                                <td><%= rs.getString(3) %></td>
+                                <td><%= rs.getString(4) %></td>
+                                <td>
+                                    <i class="bi bi-pen-fill"></i>
+                                    <i class="bi bi-trash-fill"></i>
+                                </td>
+                            </tr>        
+                            <%
+                        }
+                    } catch (SQLException e) {
+                        out.print("Error mysql " + e); // Manejo de errores
+                    }
+                            %>                                                    
                         </tbody>
                     </table>
                 </div>
