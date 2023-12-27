@@ -47,10 +47,12 @@
                         <thead class="thead-dark">
                             <tr>
                                 <!-- colspan: va a absorver 4 columnas -->
-                                <th scope="col" colspan="4">Empleados</th>
+                                <th scope="col" colspan="4" class="text-center">Empleados</th>
                                 <th scope="col">
                                     <!--i class="fa fa-fighter-jet" aria-hidden="true"></i-->
-                                    <i class="bi bi-person-plus-fill"></i>
+                                    <!-- icono de Add person 
+                                    <<a href=""> para redirigir a la pagina indicada-->
+                                    <a href="crear.jsp"><i class="bi bi-person-plus-fill"></i></a>
                                 </th>
                             </tr>
                             <tr>
@@ -81,7 +83,9 @@
                                 <td><%= rs.getString(3) %></td>
                                 <td><%= rs.getString(4) %></td>
                                 <td>
+                                    <!-- icono de pencil para editar -->
                                     <i class="bi bi-pen-fill"></i>
+                                    <!-- icono de basura para eliminar -->
                                     <i class="bi bi-trash-fill"></i>
                                 </td>
                             </tr>        
