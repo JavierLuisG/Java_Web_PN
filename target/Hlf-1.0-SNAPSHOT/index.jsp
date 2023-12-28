@@ -77,7 +77,11 @@
                                 <td><%= rs.getString(4) %></td>
                                 <td>
                                     <!-- icono de pencil para editar -->
-                                    <i class="bi bi-pen-fill"></i>
+                                    <!-- href para indicar a donde va, 
+                                    luego del ? para pasar esos valores -->
+                                    <a href="editar.jsp?id=<%= rs.getString(1)%>&nombre=<%= rs.getString(2)%>&direccion=<%= rs.getString(3)%>&telefono=<%= rs.getString(4)%>">
+                                        <i class="bi bi-pen-fill"></i>
+                                    </a>
                                     <!-- icono de basura para eliminar -->
                                     <i class="bi bi-trash-fill"></i>
                                 </td>
