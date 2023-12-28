@@ -16,11 +16,6 @@
               rel="stylesheet" 
               integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
               crossorigin="anonymous">
-        <!-- codigo bootstrap font awesome donde se pueden encontrar gran cantidad de ICONOS -->
-        <!--link rel="stylesheet" 
-              href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css" 
-              integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" 
-              crossorigin="anonymous"-->
         <!-- instalacion de bootstrap icons-->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
         <title>Lista de empleados</title>
@@ -49,9 +44,7 @@
                                 <!-- colspan: va a absorver 4 columnas -->
                                 <th scope="col" colspan="4" class="text-center">Empleados</th>
                                 <th scope="col">
-                                    <!--i class="fa fa-fighter-jet" aria-hidden="true"></i-->
-                                    <!-- icono de Add person 
-                                    <<a href=""> para redirigir a la pagina indicada-->
+                                    <!-- icono de Add person y <a href=""> para redirigir a la pagina indicada-->
                                     <a href="crear.jsp"><i class="bi bi-person-plus-fill"></i></a>
                                 </th>
                             </tr>
@@ -90,10 +83,10 @@
                                 </td>
                             </tr>        
                             <%
-                        }
-                    } catch (SQLException e) {
-                        out.print("Error mysql " + e); // Manejo de errores
-                    }
+                                }
+                            } catch (SQLException e) {
+                                out.print("Error mysql " + e); // Manejo de errores
+                            }
                             %>                                                    
                         </tbody>
                     </table>
