@@ -64,7 +64,7 @@
                                     // credenciales para ingresar a la base de datos
                                     conn = DriverManager.getConnection(url, username, password);
                                     statement = conn.createStatement();
-                                    // mostrar datos empleado
+                                    // mostrar datos empleado. ResultSet sirve para jalar los registros
                                     rs = statement.executeQuery("SELECT * FROM empleados");
                                     // realizamos while para imprimir por pantalla los datos guardados en la bd
                                     // rs.next() genera que automaticamente pase a la siguiente casilla para acceder a los datos
@@ -83,7 +83,10 @@
                                         <i class="bi bi-pen-fill"></i>
                                     </a>
                                     <!-- icono de basura para eliminar -->
-                                    <i class="bi bi-trash-fill"></i>
+                                    <!-- m-2 indica un margin de 2 pix -->
+                                    <a href="borrar.jsp?id=<%= rs.getString(1) %>" class="m-2">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </a>
                                 </td>
                             </tr>        
                             <%
