@@ -40,9 +40,36 @@
             if (sesion.getAttribute("logueado") == null || sesion.getAttribute("logueado").equals("0")){
                 response.sendRedirect("login.jsp");
             }
+        %>    
+        <%!  
+            String extractUsername(String email) {
+                // Verificar que el correo electrónico contiene el carácter '@'
+                if (email.contains("@")) {
+                    // Obtener la posición del carácter '@'
+                    int atIndex = email.indexOf("@");
+
+                    // Extraer el nombre de usuario desde el inicio hasta antes del '@'
+                    String us = email.substring(0, atIndex);
+
+                    return us;
+                } else {
+                    // En caso de que no haya carácter '@', devolver el correo electrónico completo
+                    return email;
+                }
+            }           
         %>
-        <div class="container mt-5">
-            <div class="row">
+        <div class="container mt-2">
+            <nav class="navbar bg-body-tertiary">
+                <div class="container-fluid">
+                    <a class="navbar-brand">Habla Luisa Fernanda</a>
+                    <form class="form-inline" role="search">
+                        <i class="bi bi-person-circle"></i>
+                        <%= extractUsername((String) session.getAttribute("email"))%>
+                        <button class="btn btn-outline-success" class="p-3 mb-2 bg-success text-white" type="submit">Cerrar Sesión</button>
+                    </form>
+                </div>
+            </nav>
+            <div class="row mt-3">
                 <div class="col-sm">                
                     <table class="table">
                         <thead class="thead-dark">
