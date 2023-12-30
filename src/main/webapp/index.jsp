@@ -63,12 +63,14 @@
                 <div class="container-fluid">
                     <a class="navbar-brand">Habla Luisa Fernanda</a>
                     <form class="form-inline" action="logout.jsp">
-                        <i class="bi bi-person-circle"></i>
-                        <%= extractUsername((String) session.getAttribute("email"))%>
+                        <a href="datosUsuario.jsp">
+                            <i class="bi bi-person-circle"></i>
+                            <%= extractUsername((String) session.getAttribute("email"))%>
+                        </a>
                         <button  class="btn btn-outline-success" class="p-3 mb-2 bg-success text-white" type="submit">Cerrar Sesión</button>
                     </form>
                 </div>
-            </nav>
+            </nav>  
             <div class="row mt-3">
                 <div class="col-sm">                
                     <table class="table">
