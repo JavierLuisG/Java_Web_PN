@@ -37,6 +37,7 @@
                 if (email.equals("admin@gmail.com") && pass.equals("admin")){
                     sesion.setAttribute("logueado", "1");
                     sesion.setAttribute("email", email);
+                    // para redireccionar
                     response.sendRedirect("index.jsp");
                 }
                 else {
