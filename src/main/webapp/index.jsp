@@ -21,7 +21,7 @@
         <title>Lista de empleados</title>
     </head>
     <body>
-        <%        
+        <%  
             // Datos de conexion a la bd
             String driver = "com.mysql.cj.jdbc.Driver";
             String username = "root";
@@ -33,7 +33,13 @@
             // conexion a Mysql
             Connection conn;
             Statement statement;
-            ResultSet rs;
+            ResultSet rs;                       
+
+            // 
+            HttpSession sesion = request.getSession();
+            if (sesion.getAttribute("logueado") == null || sesion.getAttribute("logueado").equals("0")){
+                response.sendRedirect("login.jsp");
+            }
         %>
         <div class="container mt-5">
             <div class="row">
