@@ -25,7 +25,7 @@
             // Datos de conexion a la bd
             String driver = "com.mysql.cj.jdbc.Driver";
             String username = "root";
-            String password = "123456";
+            String password = "";
             String port = "3306";
             String hostname = "localhost";
             String database = "pruebahlf";
