@@ -35,7 +35,7 @@
                 <div class="col-sm">
                     <form action="editar.jsp" method="get">
                         <div class="mb-3">
-                            <!-- value="<%= nombre%>" -->
+                            <!-- tomar el valor de la sesion del usuario por medio de value=""-->
                             <label for="nombre" class="form-label">Nombre</label>
                             <input type="text" class="form-control" id="nombre" value="<%= nombre%>" name="nombre" aria-describedby="Nombre" required="required">
                         </div>

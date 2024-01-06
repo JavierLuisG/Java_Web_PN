@@ -21,7 +21,7 @@
         <title>Lista de empleados</title>
     </head>
     <body>
-        <%  
+        <% 
             // Datos de conexion a la bd
             String driver = "com.mysql.cj.jdbc.Driver";
             String username = "root";
@@ -33,9 +33,8 @@
             // conexion a Mysql
             Connection conn;
             Statement statement;
-            ResultSet rs;                       
-
-            // 
+            ResultSet rs;
+            // verificar si el usuario está logueado
             HttpSession sesion = request.getSession();
             if (sesion.getAttribute("logueado") == null || sesion.getAttribute("logueado").equals("0")){
                 response.sendRedirect("login.jsp");
@@ -47,10 +46,8 @@
                 if (email.contains("@")) {
                     // Obtener la posición del carácter '@'
                     int atIndex = email.indexOf("@");
-
                     // Extraer el nombre de usuario desde el inicio hasta antes del '@'
                     String us = email.substring(0, atIndex);
-
                     return us;
                 } else {
                     // En caso de que no haya carácter '@', devolver el correo electrónico completo
