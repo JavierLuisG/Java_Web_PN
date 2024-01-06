@@ -16,7 +16,7 @@
         <%
             String driver = "com.mysql.cj.jdbc.Driver";
             String username = "root";
-            String password = "123456";
+            String password = "";
             String port = "3306";
             String hostname = "localhost";
             String database = "pruebahlf";
@@ -61,7 +61,13 @@
             String usuario = request.getParameter("usuario");
             String pass1 = request.getParameter("pass");
             String pass2 = request.getParameter("newPass");
-            if(pass1.equals(pass2)){
+            // verificar primero que las contraseñas no estén vacías
+            if (pass1.isEmpty() || pass2.isEmpty()) {
+                %>
+                <div class="container mt-4">
+                    <%out.print("<div class=\"alert alert-warning\" role=\"alert\">Digite una contraseña segura, no puede ir vacia</div>");%>
+                </div><% 
+            } else if(pass1.equals(pass2)){
                 try{
                     Class.forName(driver);
                     conn = DriverManager.getConnection(url, username, password);
@@ -71,12 +77,12 @@
                     response.sendRedirect("index.jsp");
                 } catch(Exception ex){
                     out.print("Error, no se pudo actualizar la información: " + ex);
-                }
+                }           
             } else {
                %>
-            <div class="container mt-4">
-                <%out.print("<div class=\"alert alert-warning\" role=\"alert\">Las contraseñas <a href=\"#\" class=\"alert-link\">no coinciden</a></div>");%>
-            </div><%
+                <div class="container mt-4">
+                    <%out.print("<div class=\"alert alert-warning\" role=\"alert\">Las contraseñas <a href=\"#\" class=\"alert-link\">no coinciden</a></div>");%>
+                </div><%
             }
         }
     %> 
