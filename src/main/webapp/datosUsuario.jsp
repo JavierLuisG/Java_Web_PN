@@ -70,7 +70,10 @@
                     out.print("Error, no se pudo actualizar la información: " + ex);
                 }
             } else {
-                out.print("Las contraseñas no coinciden");
+               %>
+            <div class="container mt-4">
+                <%out.print("<div class=\"alert alert-warning\" role=\"alert\">Las contraseñas <a href=\"#\" class=\"alert-link\">no coinciden</a></div>");%>
+            </div><%
             }
         }
     %> 
