@@ -16,7 +16,7 @@
         <%
             String driver = "com.mysql.cj.jdbc.Driver";
             String username = "root";
-            String password = "";
+            String password = "123456";
             String port = "3306";
             String hostname = "localhost";
             String database = "pruebahlf";
@@ -32,7 +32,8 @@
         <div class="container mt-5">
             <div class="row">
                 <div class="col-sm">
-                    <form>
+                    <!-- action para mandar hacia nosotros mismos y el method post para que los datos sean ocultos en el navegador -->
+                    <form action="datosUsuario.jsp" method="post">
                         <!-- tomar el valor de la sesion del usuario por medio de value=""-->
                         <div class="mb-3">
                             <label for="exampleInputEmail" class="form-label">Usuario</label>
@@ -47,6 +48,8 @@
                             <input type="password" class="form-control" name="newPass" id="newPassword" placeholder="Ingrese contraseña nueva">
                         </div>
                         <button type="submit" name="guardar" class="btn btn-primary">Guardar</button>
+                        <!-- boton para cancelar los datos ingresados -->
+                        <a href="index.jsp" class="btn btn-danger">Cancelar</a>
                     </form>
                 </div>
             </div>
