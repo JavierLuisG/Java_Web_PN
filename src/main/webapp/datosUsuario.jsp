@@ -1,3 +1,5 @@
+<%@ page import="java.math.BigInteger"%>
+<%@ page import="java.security.MessageDigest"%>
 <%@ page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -72,7 +74,7 @@
                     Class.forName(driver);
                     conn = DriverManager.getConnection(url, username, password);
                     statement = conn.createStatement();
-                    statement.executeUpdate("UPDATE usuarios SET email = '"+ usuario +"', password = '"+ pass2 +"' WHERE id = '"+ id +"';");
+                    statement.executeUpdate("UPDATE usuarios SET email = '"+ usuario +"', password = '"+ getMD5(pass2) +"' WHERE id = '"+ id +"';");
                     session.setAttribute("usuario", usuario);
                     response.sendRedirect("index.jsp");
                 } catch(Exception ex){
@@ -87,3 +89,26 @@
         }
     %> 
 </html>
+<%! 
+    public String getMD5(String texto) {
+    try {
+        // Crear una máquina especial que mezcle usando MD5
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        // Mezclar el texto y obtener un conjunto de bytes
+        byte[] encriptacionBytes = md.digest(texto.getBytes());
+        // Convertir los bytes a un número grande positivo
+        BigInteger num = new BigInteger(1, encriptacionBytes);
+        // Convertir el número a una cadena en formato hexadecimal
+        String encriptacionString = num.toString(16);
+        // Asegurar que la cadena resultante tenga siempre 32 caracteres
+        while(encriptacionString.length() < 32) {
+            encriptacionString = "0" + encriptacionString;
+        }
+        // Devolver la cadena en formato hexadecimal
+        return encriptacionString;
+    } catch (Exception ex) {
+        // Manejar cualquier error lanzando una excepción
+        throw new RuntimeException(ex);
+    }
+}
+%>
