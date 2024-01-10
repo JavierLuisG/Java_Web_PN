@@ -4,8 +4,6 @@
     Author     : JavierLuis
 --%>
 
-<%@ page import="java.sql.*"%>
-<%@ page import="com.mysql.cj.jdbc.Driver" %>
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -22,18 +20,6 @@
     </head>
     <body>
         <% 
-            // Datos de conexion a la bd
-            String driver = "com.mysql.cj.jdbc.Driver";
-            String username = "root";
-            String password = "";
-            String port = "3306";
-            String hostname = "localhost";
-            String database = "pruebahlf";
-            String url = "jdbc:mysql://" + hostname + ":" + port + "/" + database + "?autoReconnect=true&useSSL=false";
-            // conexion a Mysql
-            Connection conn;
-            Statement statement;
-            ResultSet rs;
             // verificar si el usuario está logueado
             HttpSession sesion = request.getSession();
             if (sesion.getAttribute("logueado") == null || sesion.getAttribute("logueado").equals("0")){
@@ -90,43 +76,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <% 
-                                try {
-                                    Class.forName(driver);
-                                    // credenciales para ingresar a la base de datos
-                                    conn = DriverManager.getConnection(url, username, password);
-                                    statement = conn.createStatement();
-                                    // mostrar datos empleado. ResultSet sirve para jalar los registros
-                                    rs = statement.executeQuery("SELECT * FROM empleados");
-                                    // realizamos while para imprimir por pantalla los datos guardados en la bd
-                                    // rs.next() genera que automaticamente pase a la siguiente casilla para acceder a los datos
-                                    while (rs.next()){
-                            %> 
-                            <tr>
-                                <th scope="row"><%= rs.getString(1) %></th>
-                                <td><%= rs.getString(2) %></td>
-                                <td><%= rs.getString(3) %></td>
-                                <td><%= rs.getString(4) %></td>
-                                <td>
-                                    <!-- icono de pencil para editar -->
-                                    <!-- href para indicar a donde va, 
-                                    luego del ? para pasar esos valores -->
-                                    <a href="editar.jsp?id=<%= rs.getString(1)%>&nombre=<%= rs.getString(2)%>&direccion=<%= rs.getString(3)%>&telefono=<%= rs.getString(4)%>">
-                                        <i class="bi bi-pen-fill"></i>
-                                    </a>
-                                    <!-- icono de basura para eliminar -->
-                                    <!-- m-2 indica un margin de 2 pix -->
-                                    <a href="borrar.jsp?id=<%= rs.getString(1) %>" class="m-2">
-                                        <i class="bi bi-trash-fill"></i>
-                                    </a>
-                                </td>
-                            </tr>        
-                            <%
-                                }
-                            } catch (SQLException e) {
-                                out.print("Error mysql " + e); // Manejo de errores
-                            }
-                            %>                                                    
+                            <!--Forma de llamar un servlet dentro de un jsp-->
+                            <jsp:include page="SvEmpleados"/>
                         </tbody>
                     </table>
                 </div>
