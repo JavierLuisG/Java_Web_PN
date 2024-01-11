@@ -19,14 +19,14 @@
         <title>Lista de empleados</title>
     </head>
     <body>
-        <% 
+        <%
             // verificar si el usuario está logueado
             HttpSession sesion = request.getSession();
             if (sesion.getAttribute("logueado") == null || sesion.getAttribute("logueado").equals("0")){
                 response.sendRedirect("login.jsp");
             }
         %>    
-        <%!  
+        <%!
             String extractUsername(String email) {
                 // Verificar que el correo electrónico contiene el carácter '@'
                 if (email.contains("@")) {
@@ -39,7 +39,7 @@
                     // En caso de que no haya carácter '@', devolver el correo electrónico completo
                     return email;
                 }
-            }           
+            }
         %>
         <div class="container mt-2">
             <nav class="navbar bg-body-tertiary">
@@ -55,31 +55,41 @@
                 </div>
             </nav>  
             <div class="row mt-3">
-                <div class="col-sm">                
-                    <table class="table">
-                        <thead class="thead-dark">
-                            <tr>
-                                <!-- colspan: va a absorver 4 columnas -->
-                                <th scope="col" colspan="4" class="text-center">Empleados</th>
-                                <th scope="col">
-                                    <!-- icono de Add person y <a href=""> para redirigir a la pagina indicada-->
-                                    <a href="crear.jsp"><i class="bi bi-person-plus-fill"></i></a>
-                                </th>
-                            </tr>
-                            <tr>
-                                <th scope="col">Id</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Dirección</th>
-                                <th scope="col">Teléfono</th>
-                                <!-- acciones (editar y borrar) -->
-                                <th scope="col">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!--Forma de llamar un servlet dentro de un jsp-->
-                            <jsp:include page="SvEmpleados"/>
-                        </tbody>
-                    </table>
+                <div class="col-sm">
+                    <form action="index.jsp" method="GET">
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col" class="text-center"></th
+                                    <!-- Search -->
+                                    <th scope="col" class="text-center">
+                                        <input type="text" name="nombre" value="" class="form-control" placeholder="Nombre"/>
+                                    </th>
+                                    <!-- btn buscar -->
+                                    <th scope="col" class="text-center">
+                                        <input type="submit" value="Buscar" name="buscar" class="form-control btn btn-primary"/>
+                                    </th>
+                                    <th></th>
+                                    <th scope="col">
+                                        <!-- icono de Add person y <a href=""> para redirigir a la pagina indicada-->
+                                        <a href="crear.jsp"><i class="bi bi-person-plus-fill"></i></a>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Dirección</th>
+                                    <th scope="col">Teléfono</th>
+                                    <!-- acciones (editar y borrar) -->
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!--Forma de llamar un servlet dentro de un jsp-->
+                                <jsp:include page="SvEmpleados"/>
+                            </tbody>
+                        </table>
+                    </form>
                 </div>
             </div>
         </div>
