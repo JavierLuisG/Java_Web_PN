@@ -42,8 +42,16 @@ public class SvEmpleados extends HttpServlet {
                 // credenciales para ingresar a la base de datos
                 conn = DriverManager.getConnection(url, username, password);
                 statement = conn.createStatement();
+                String query = "SELECT * FROM empleados";
+                String where = "";
+                String nombre = request.getParameter("nombre");
+                // dos condiciones que verifican si nombre es null y si where está vacio
+                if (nombre != null && !nombre.isEmpty()) {
+                    where = " where nombre = '"+ nombre +"'"; 
+                }
+                query += where;
                 // mostrar datos empleado. ResultSet sirve para jalar los registros
-                rs = statement.executeQuery("SELECT * FROM empleados");
+                rs = statement.executeQuery(query);
                 // realizamos while para imprimir por pantalla los datos guardados en la bd
                 // rs.next() genera que automaticamente pase a la siguiente casilla para acceder a los datos
                 while (rs.next()){
