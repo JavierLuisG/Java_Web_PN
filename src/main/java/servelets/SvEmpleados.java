@@ -16,6 +16,8 @@ import jakarta.servlet.http.HttpServletResponse;
 // Librerías para la conexión con la base de datos
 import java.sql.*;
 import com.mysql.cj.jdbc.Driver;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @WebServlet(name = "SvEmpleados", urlPatterns = {"/SvEmpleados"})
 public class SvEmpleados extends HttpServlet {
@@ -47,6 +49,7 @@ public class SvEmpleados extends HttpServlet {
                 String nombre = request.getParameter("nombre");
                 // dos condiciones que verifican si nombre es null y si where está vacio
                 if (nombre != null && !nombre.isEmpty()) {
+                    nombre = this.mysql_real_scape_string(nombre);
                     where = " where nombre = '"+ nombre +"'"; 
                 }
                 query += where;
@@ -76,8 +79,31 @@ public class SvEmpleados extends HttpServlet {
                 }
             } catch (ClassNotFoundException | SQLException e) {
                 out.print("Error mysql " + e); // Manejo de errores
+            /** 
+             * La maquina realiza demasiados ataques en un solo momento
+             * finally permite que no se sature la pagina de tantas consultas en poco tiempo
+             */
+            } finally { 
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(SvEmpleados.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
+    }
+    /**
+     * aparte del \ hay mas simbolos que sirven para hacer inyección
+     * aqui se ingresan todas las posibles formas de inyección 
+     */
+    public String mysql_real_scape_string(String texto) {
+        // para prevenir inyección -> la \' es la forma como ' se agrega al texto literalmente
+        texto = texto.replaceAll("\\\\", "\\\\\\\\");
+        texto = texto.replaceAll("\\n", "\\\\n");   
+        texto = texto.replaceAll("\\r", "\\\\r");
+        texto = texto.replaceAll("\\t", "\\\\t");
+        texto = texto.replaceAll("'", "\\\\'"); // debe ir de ultimas es necesario 4 \
+        return texto;
     }
 
     @Override
