@@ -50,11 +50,18 @@ public class SvEmpleados extends HttpServlet {
                 // dos condiciones que verifican si nombre es null y si where está vacio
                 if (nombre != null && !nombre.isEmpty()) {
                     nombre = this.mysql_real_scape_string(nombre);
-                    where = " where nombre = '"+ nombre +"'"; 
+                    // se le indica a la consulta que va a recibir algun valor '?'
+                    where = " where nombre = ?"; 
                 }
                 query += where;
-                // mostrar datos empleado. ResultSet sirve para jalar los registros
-                rs = statement.executeQuery(query);
+                // Declaramos el Prepared... (se prepara el query para recibir la variable nombre)
+                PreparedStatement preparar = conn.prepareStatement(query);
+                // se indica la posicion donde esta el valor (? -> está en el primero)y el valor
+                if (nombre != null && !nombre.isEmpty()) {
+                    preparar.setString(1, nombre);
+                }                
+                // se ejecuta el query y como devuelve un ResultSet se guarda en el rs
+                rs = preparar.executeQuery();
                 // realizamos while para imprimir por pantalla los datos guardados en la bd
                 // rs.next() genera que automaticamente pase a la siguiente casilla para acceder a los datos
                 while (rs.next()){
