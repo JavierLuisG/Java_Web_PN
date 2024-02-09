@@ -31,8 +31,9 @@ Para ejecutar este proyecto, sigue estos pasos:
 3. Abre tu IDE compatible con JDK 17 (NetBeans, IntelliJ IDEA, Eclipse, entre otros) y carga el proyecto.
 4. Instala Apache Tomcat, un servidor web y servlet container que se utiliza para ejecutar aplicaciones Java web. Puedes descargar Tomcat desde [aquí](https://tomcat.apache.org/download-10.cgi).
 5. Incorpora Bootstrap, un framework de diseño web, al proyecto para mejorar la interfaz de usuario y la experiencia del usuario. Puedes encontrar más información sobre cómo incorporar Bootstrap [aquí](https://getbootstrap.com/).
-6. Instala y configura MySQL, un sistema de gestión de bases de datos relacional. Puedes descargar MySQL desde [aquí](https://dev.mysql.com/downloads/file/?id=526408).
-7. Instala y configura MySQL Workbench, una herramienta de diseño de bases de datos y administración para MySQL. Puedes descargar MySQL Workbench desde [aquí](https://dev.mysql.com/downloads/workbench/).
+6. Descarga el conector MySQL JDBC desde [aquí](https://dev.mysql.com/downloads/connector/j/).
+7. Instala y configura MySQL, un sistema de gestión de bases de datos relacional. Puedes descargar MySQL desde [aquí](https://dev.mysql.com/downloads/file/?id=526408).
+8. Instala y configura MySQL Workbench, una herramienta de diseño de bases de datos y administración para MySQL. Puedes descargar MySQL Workbench desde [aquí](https://dev.mysql.com/downloads/workbench/).
 
 ### Uso
 1. Ejecuta la aplicación desde tu IDE preferido. Asegúrate de tenerlo configurado para usar JDK 17.
